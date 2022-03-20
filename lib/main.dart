@@ -43,7 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Text("初めてのテキスト"),
+      body: Column(
+        children: [
+          Text("初めてのテキスト"),
+          Text("2番目のテキスト"),
+        ]
+      )
     );
   }
 }
