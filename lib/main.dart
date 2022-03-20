@@ -47,6 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Text("初めてのテキスト"),
           Text("2番目のテキスト"),
+          TextButton(
+            onPressed: () => {print("ボタンが押されたよ")},
+            child: Text("更新"),
+          )
         ]
       )
     );
