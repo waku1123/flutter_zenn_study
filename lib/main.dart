@@ -49,7 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ]
         )
       ),
+      drawer: Drawer(child: Center(child: Text("Drawer"))),
+      // drawer: endDrawer(child: Center(child: Text("Drawer"))),
       body: Text("初めてのテキスト"),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {print("押したね？")},
+        child: Icon(Icons.timer),
+      ),
     );
   }
 }
