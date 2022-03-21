@@ -73,4 +73,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+}
+// statelessWidget
+class StatelessPage extends StatelessWidget {
+  const StatelessPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("StatelesPage"),
+      ),
+      body: Text("書き換えしないページ"),
+    );
+  }
 }
