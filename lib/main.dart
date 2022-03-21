@@ -59,7 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
               "$_counter",
               style: Theme.of(context).textTheme.headline4,
             ),
-            Text("$_type", style: TextStyle(fontSize: 20, color: Colors.red))
+            if (_counter % 2 == 0)
+              Text("偶数です", style: TextStyle(fontSize: 20, color: Colors.red)),
+            if (_counter % 2 == 1)
+              Text("奇数です", style: TextStyle(fontSize: 20, color: Colors.red)),
           ]
         ),
       ),
