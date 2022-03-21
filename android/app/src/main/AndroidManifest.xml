@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_zenn_study">
+    <uses-permission android:name="android.permission.QUERY_ALL_PACAKAGES" />
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https" />
+        </intent>
+    </queries>
    <application
         android:label="flutter_zenn_study"
         android:icon="@mipmap/ic_launcher">
