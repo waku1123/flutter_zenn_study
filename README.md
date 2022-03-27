@@ -1,6 +1,9 @@
 # flutter_zenn_study
 
-A new Flutter project.
+learning flutter project
+
+[zenn book](https://zenn.dev/kazutxt/books/flutter_practice_introduction/viewer/sampleapp_today)
+
 
 ## Getting Started
 
