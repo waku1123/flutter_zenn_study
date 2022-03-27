@@ -1,15 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-
+import 'package:flutter_zenn_study/TestPage1.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,103 +12,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
-
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
-
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  String _type = "偶数";
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-      if (_counter % 2 == 0) {
-        _type = "偶数";
-      } else {
-        _type = "奇数";
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "You have pushed the button this many times:",
-            ),
-            Text(
-              "$_counter",
-              key: Key("counter"),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            if (_counter % 2 == 0)
-              Text("偶数です", style: TextStyle(fontSize: 20, color: Colors.red)),
-            if (_counter % 2 == 1)
-              Text("奇数です", style: TextStyle(fontSize: 20, color: Colors.red)),
-            IconButton(
-              icon: Icon(Icons.open_in_browser),
-              onPressed: () async {
-                String url = Uri.encodeFull("https://www.google.co.jp");
-                try {
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                } catch (e) {
-                  print(e);
-                }
-              }
-            ),
-          ]
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        key: Key("increment"),
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+    return Scaffold(body: TestPage1());
   }
-
-}
-// statelessWidget
-class StatelessPage extends StatelessWidget {
-  const StatelessPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("StatelesPage"),
-      ),
-      body: Text("書き換えしないページ"),
-    );
-  }
-}
-
-saveFlag(bool flag) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setBool("FLAG", flag);
-}
-loadFlag() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getBool("FLAG") ?? false;
 }
