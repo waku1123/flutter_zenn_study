@@ -3,6 +3,7 @@ import 'package:flutter_zenn_study/TestPage3.dart';
 class TestPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    debugPrint("TestPage2");
     return Scaffold(
       appBar: AppBar(
         title: Text('TestPage2'),
@@ -11,10 +12,7 @@ class TestPage2 extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           TextButton(
             onPressed: () => {
-              Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) {
-                return TestPage3();
-              }))
+              Navigator.pushNamed(context, "/test3")
             },
             child: Text('進む', style: TextStyle(fontSize: 80))
           ),
