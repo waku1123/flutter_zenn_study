@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zenn_study/BussinessLogic.dart';
+import 'package:flutter_zenn_study/BusinessLogic.dart';
 import "dart:async";
 
 void main() {
@@ -30,13 +30,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   var intStream = StreamController<int>();
-  var stringStream = StreamController<String>();
+  var stringStream = StreamController<String>.broadcast();
   var generator = new Generator();
   var coodinator = new Coordinator();
   var consumer = new Consumer();
 
   void _incrementCounter() {
-      generator.generate();
+    generator.generate();
     setState(() {
       _counter++;
     });
@@ -44,19 +44,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-      generator.init(intStream);
-      coodinator.init(intStream, stringStream);
-      consumer.init(stringStream);
-      coodinator.coordinate();
-      consumer.consume();
+    generator.init(intStream);
+    coodinator.init(intStream, stringStream);
+    consumer.init(stringStream);
+    coodinator.coordinate();
+    consumer.consume();
 
     super.initState();
   }
 
   @override
   void dispose() {
-      intStream.close();
-      stringStream.close();
+    intStream.close();
+    stringStream.close();
     super.dispose();
   }
 
@@ -67,19 +67,27 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title!),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              key: Key('counter'),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('You have pushed the button this many times:',),
+              Text(
+                '$_counter',
+                key: Key('counter'),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              StreamBuilder<String>(
+                stream: stringStream.stream,
+                initialData: "",
+                builder: (context, snapshot) {
+                  return Text(
+                    'RANDOM : ${snapshot.data}',
+                    style: Theme.of(context).textTheme.headline4,
+                  );
+                },
+              ),
+            ],
+          ),
       ),
       floatingActionButton: FloatingActionButton(
         key: Key('increment'),
