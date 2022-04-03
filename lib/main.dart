@@ -32,7 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
     // Async().asynctest1(); //同期処理
-    Async().asynctest2(); // 非同期処理
+    // Async().asynctest2(); // 非同期処理
+    Async().asynctest3(); // 非同期処理
   }
 
   @override
