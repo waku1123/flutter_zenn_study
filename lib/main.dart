@@ -31,8 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
-    // 同期処理
-    Async().asynctest1(); // 2～4も同様にここで呼び出す
+    // Async().asynctest1(); //同期処理
+    Async().asynctest2(); // 非同期処理
   }
 
   @override
