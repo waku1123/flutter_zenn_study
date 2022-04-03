@@ -33,7 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     // Async().asynctest1(); //同期処理
     // Async().asynctest2(); // 非同期処理
-    Async().asynctest3(); // 非同期処理
+    // Async().asynctest3(); // 非同期処理(コールバック)
+    Async().asynctest4(); // 非同期処理(await)
   }
 
   @override

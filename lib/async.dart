@@ -31,6 +31,7 @@ class Async {
     // 非同期処理1
     Future<String> result1 = asyncFunc("data1", 3);
     result1.then((result) {
+      // callback
       print(result);
     });
 
@@ -38,6 +39,7 @@ class Async {
     print("data2 start");
     Future<String> result2 = asyncFunc("data2", 2);
     result2.then((result) {
+      // callback
       print(result);
     });
 
@@ -45,6 +47,7 @@ class Async {
     print("data3 start");
     Future<String> result3 = asyncFunc("data3", 1);
     result3.then((result) {
+      // callback
       print(result);
     });
 
@@ -54,6 +57,16 @@ class Async {
     // });
   }
 
+  void asynctest4() async {
+    print("method begin");
+    print(DateTime.now().toString());
+    print("data1 start");
+    print(await asyncFunc("data1", 3)); // asyncFuncが終わるのを待ってしまうので、同期的に実行される
+    print("data2 start");
+    print(await asyncFunc("data2", 2));
+    print("data3 start");
+    print(await asyncFunc("data3", 1));
+  }
   String syncFunc(String name, int time) {
     sleep(Duration(seconds: time));
     return name + ":" + DateTime.now().toString();
