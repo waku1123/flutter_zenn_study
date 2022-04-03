@@ -28,18 +28,21 @@ class Async {
     print("method begin");
     print(DateTime.now().toString());
     print("data1 start");
-    Future<String> result1 = asyncFunc("data1", 3);
-    result1.then((result) {
-      print(result);
-    });
-    print("data2 start");
-    Future<String> result2 = asyncFunc("data2", 2);
-    result2.then((result) {
-      print(result);
-    });
-    print("data3 start");
-    Future<String> result3 = asyncFunc("data3", 1);
-    result3.then((result) {
+    // Future<String> result1 = asyncFunc("data1", 3);
+    // result1.then((result) {
+    //   print(result);
+    // });
+    // print("data2 start");
+    // Future<String> result2 = asyncFunc("data2", 2);
+    // result2.then((result) {
+    //   print(result);
+    // });
+    // print("data3 start");
+    // Future<String> result3 = asyncFunc("data3", 1);
+    // result3.then((result) {
+    //   print(result);
+    // });
+    Future.wait([asyncFunc("data1", 3), asyncFunc("data2", 2), asyncFunc("data3", 1)]).then((result) {
       print(result);
     });
   }
