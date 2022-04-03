@@ -14,7 +14,7 @@ class NullSample {
   }
 
   method2() {
-    int x = 20ｄ;
+    int x = 20;
     int? y = getNullable();
 
     x = y!; // yをNullableにキャストして代入する
