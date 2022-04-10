@@ -55,21 +55,24 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (BuildContext context) => MyData(),
+      create: (BuildContext context) => MyData(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title!),
-      ),
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Consumer<MyData>(
-              builder: (context, mydata, _) => Text(
-                mydata.value.toStringAsFixed(2),
-                style: TextStyle(fontSize: 100),
+              // context.readを使ってアクセス
+              builder: (context, schedule, _) => Text(
+                context.select(
+                    (MyData mydata) => mydata.value.toStringAsFixed(2)
+                ),
+                style: TextStyle(fontSize: 100)
               ),
             ),
-            MySlider(),
+            MySlider()
           ],
         )
       ),
