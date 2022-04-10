@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zenn_study/MyData.dart';
+import 'package:flutter_zenn_study/Slider.dart';
 import 'package:flutter_zenn_study/Widgets.dart';
 import 'package:flutter_zenn_study/MyInheritedWidget.dart';
 import 'package:provider/provider.dart';
@@ -52,17 +54,25 @@ class _MyHomePageState extends State<MyHomePage> {
   );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title!),
+    return ChangeNotifierProvider(
+        create: (BuildContext context) => MyData(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title!),
       ),
-      //body: MyInheritedWidget(count: _counter, child: _widget),
-      body: Provider<int>.value(value: _counter, child: _widget),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Consumer<MyData>(
+              builder: (context, mydata, _) => Text(
+                mydata.value.toStringAsFixed(2),
+                style: TextStyle(fontSize: 100),
+              ),
+            ),
+            MySlider(),
+          ],
+        )
+      ),
     );
   }
 }
